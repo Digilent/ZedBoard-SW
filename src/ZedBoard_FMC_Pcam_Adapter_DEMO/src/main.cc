@@ -176,7 +176,7 @@ int main()
 			try{
 
 
-		     	input_pipeline_mode_change(vdma_a_driver, *cam_a_ptr, scaler_a, Resolution::R960_540_60_PP, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps_336M_MIPI, XPAR_MIPI_D_PHY_RX_A_S_AXI_LITE_BASEADDR, XPAR_MIPI_CSI_2_RX_A_S_AXI_LITE_BASEADDR, XPAR_AXI_GAMMACORRECTION_A_BASEADDR);
+		     	input_pipeline_mode_change(vdma_a_driver, *cam_a_ptr, scaler_a, Resolution::R960_540_60_PP, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps, XPAR_MIPI_D_PHY_RX_A_S_AXI_LITE_BASEADDR, XPAR_MIPI_CSI_2_RX_A_S_AXI_LITE_BASEADDR, XPAR_AXI_GAMMACORRECTION_A_BASEADDR);
 
 			}
 			catch(std::exception const& e){
@@ -186,7 +186,7 @@ int main()
 		}
 		 if(cam_b_ptr){
 			try{
-		    input_pipeline_mode_change(vdma_b_driver, *cam_b_ptr, scaler_b, Resolution::R960_540_60_PP, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps_336M_MIPI, XPAR_MIPI_D_PHY_RX_B_S_AXI_LITE_BASEADDR, XPAR_MIPI_CSI_2_RX_B_S_AXI_LITE_BASEADDR, XPAR_AXI_GAMMACORRECTION_B_BASEADDR);
+		    input_pipeline_mode_change(vdma_b_driver, *cam_b_ptr, scaler_b, Resolution::R960_540_60_PP, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps, XPAR_MIPI_D_PHY_RX_B_S_AXI_LITE_BASEADDR, XPAR_MIPI_CSI_2_RX_B_S_AXI_LITE_BASEADDR, XPAR_AXI_GAMMACORRECTION_B_BASEADDR);
 			}
 			catch(std::exception const& e){
 				VERBOSE("An exception occurred in Input pipeline for cam_b: %s", e.what());
@@ -194,7 +194,7 @@ int main()
 		}
 		 if(cam_c_ptr){
 			try{
-				input_pipeline_mode_change(vdma_c_driver, *cam_c_ptr, scaler_c, Resolution::R960_540_60_PP, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps_336M_MIPI, XPAR_MIPI_D_PHY_RX_C_S_AXI_LITE_BASEADDR, XPAR_MIPI_CSI_2_RX_C_S_AXI_LITE_BASEADDR, XPAR_AXI_GAMMACORRECTION_C_BASEADDR);
+				input_pipeline_mode_change(vdma_c_driver, *cam_c_ptr, scaler_c, Resolution::R960_540_60_PP, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps, XPAR_MIPI_D_PHY_RX_C_S_AXI_LITE_BASEADDR, XPAR_MIPI_CSI_2_RX_C_S_AXI_LITE_BASEADDR, XPAR_AXI_GAMMACORRECTION_C_BASEADDR);
 
 			}
 			catch(std::exception const& e){
@@ -203,7 +203,7 @@ int main()
 		}
 		 if(cam_d_ptr){
 			try{
-				input_pipeline_mode_change(vdma_d_driver, *cam_d_ptr, scaler_d, Resolution::R960_540_60_PP, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps_336M_MIPI, XPAR_MIPI_D_PHY_RX_D_S_AXI_LITE_BASEADDR, XPAR_MIPI_CSI_2_RX_D_S_AXI_LITE_BASEADDR, XPAR_AXI_GAMMACORRECTION_D_BASEADDR);
+				input_pipeline_mode_change(vdma_d_driver, *cam_d_ptr, scaler_d, Resolution::R960_540_60_PP, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps, XPAR_MIPI_D_PHY_RX_D_S_AXI_LITE_BASEADDR, XPAR_MIPI_CSI_2_RX_D_S_AXI_LITE_BASEADDR, XPAR_AXI_GAMMACORRECTION_D_BASEADDR);
 
 			}
 			catch(std::exception const& e){
