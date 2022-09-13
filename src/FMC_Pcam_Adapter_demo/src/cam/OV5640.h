@@ -710,7 +710,7 @@ public:
 		// We apply software reset
 		writeReg(0x3008, 0x82);
 
-		usleep(1000000);
+		usleep(100000);
 
 		size_t i;
 		for (i=0;i<sizeof(OV5640_cfg::cfg_init_)/sizeof(OV5640_cfg::cfg_init_[0]); ++i)
@@ -724,10 +724,12 @@ public:
 	Errc reset()
 	{
 		//Power cycle
-		gpio_.clearBit(gpio_.Bits::CAM_GPIO0);
+		// Disabled this because, in the case of the FMC Pcam Adapter demo, it was just adding an unnecessary init delay.
+		// This gpio handle is intentionally not functional because cameras do not have individual pwup lines.
+		/* gpio_.clearBit(gpio_.Bits::CAM_GPIO0);
 		usleep(1000000);
 		gpio_.setBit(gpio_.Bits::CAM_GPIO0);
-		usleep(1000000);
+		usleep(1000000); */
 
 		return OK;
 	}

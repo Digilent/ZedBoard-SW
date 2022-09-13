@@ -15,9 +15,9 @@ set app_name [file tail $script_dir]
 
 # Variables created by checkin.tcl
 set lang "c++"
-set domain "standalone_domain"
-set platform "hw_platform"
-set sysproj "ZedBoard_FMC_Pcam_Adapter_DEMO_system"
+set domain "standalone_ps7_cortexa9_0"
+set platform "system_wrapper"
+set sysproj "FMC_Pcam_Adapter_demo_system"
 
 # Handle dependent variables
 if {$lang == "c"} {
@@ -32,7 +32,15 @@ if {$lang == "c"} {
 # unused `app create` arguments:
 # -os, -arch, and -proc are inferred from -domain?
 # -hw conflicts with -platform usage
+# -template must be specified, otherwise Hello World by default
 app create -name $app_name -lang $lang -template $template -domain $domain -platform $platform -sysproj $sysproj
+
+# even the "Empty Application" template creates lscript.ld and Readme
+# can cause confusion later when linking linker script
+# delete all files created by the template
+if { [catch {file delete -- {*}[glob -directory [file normalize [getws]/$app_name/src] *]} result] } {
+    puts "INFO: emptying src/ dir after project creation failed with $result"
+}
 
 importsources -name $app_name -path $script_dir/src -soft-link
 
@@ -42,11 +50,12 @@ app config -set -name $app_name assembler-flags {}
 app config -set -name $app_name compiler-misc {-c -fmessage-length=0 -MT"$@" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard}
 app config -set -name $app_name compiler-optimization {Optimize more (-O2)}
 app config -add -name $app_name include-path $script_dir/src
+app config -set -name $app_name linker-misc { -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec}
 app config -set -name $app_name linker-script $script_dir/src/lscript.ld
 app config -set -name $app_name build-config Debug
 app config -set -name $app_name assembler-flags {}
 app config -set -name $app_name compiler-misc {-c -fmessage-length=0 -MT"$@" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard}
 app config -set -name $app_name compiler-optimization {None (-O0)}
-app config -add -name $app_name define-compiler-symbols {_DEBUG}
 app config -add -name $app_name include-path $script_dir/src
+app config -set -name $app_name linker-misc { -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec}
 app config -set -name $app_name linker-script $script_dir/src/lscript.ld

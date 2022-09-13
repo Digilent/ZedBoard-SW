@@ -11,8 +11,8 @@
 #include <cam/GPIO_Client.h>
 #include <stdexcept>
 
-#include "xgpiops.h"
-#include "verbose/verbose.h"
+#include <xgpiops.h>
+#include <verbose/verbose.h>
 
 namespace digilent {
 

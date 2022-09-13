@@ -12,9 +12,11 @@ puts "INFO: Found $hw_src"
 
 set hw_name [file tail $script_dir]
 
-platform create -name "$hw_name" -hw "$hw_src"
+# You may add extra options for custom platform creation
+platform create -name "$hw_name" -hw "$hw_src" -no-boot-bsp
 
-platform config -extra-compiler-flags fsbl "-MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard "
+
+platform config -extra-compiler-flags fsbl " -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard "
 platform config -extra-linker-flags fsbl ""
 platform config -extra-compiler-flags pmufw ""
 platform config -extra-linker-flags pmufw ""

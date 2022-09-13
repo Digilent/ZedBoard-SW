@@ -1,7 +1,7 @@
 # Run this script to create the Vitis workspace in the <repo>/ws/ sub-directory
 # If ::create_path global variable is set, the project is created under that path instead of ws/
 
-set script [info script] 
+set script [file normalize [info script]] 
 set script_dir [file normalize [file dirname $script]]
 
 puts "INFO: Running $script."
@@ -21,8 +21,8 @@ if { [llength [glob -nocomplain -types d $dest_dir/*]] != 0 } {
 	# If the workspace is already set to the destination directory
 	if { [file normalize [getws]] == [file normalize $dest_dir] } {
 		# Check if the workspace is empty, which it will be if Vitis is launched in an empty directory
-		if { [catch {app list} ] == 0 || [catch {platform list} ] == 0 || [catch {domain list} ] == 0 || [catch {library list} ] == 0 } {
-			puts "WARNING: workspace is not empty. Close Vitis or XSCT to relinquish control and run the cleanup scripts. Re-run create_workspace.tcl afterwards."
+		if { [catch {app list} ] == 0 || ([catch {platform list} ] == 0 && [catch {platform list}] == "") || [catch {domain list} ] == 0 || [catch {library list} ] == 0 } {
+			puts "WARNING: workspace is not empty. Close Vitis or XSCT to relinquish control and run the cleanup scripts. Re-run checkout.tcl afterwards."
 			flush stdout;
 			return -code error "Workspace already exists and needs to be closed first"
 		}
