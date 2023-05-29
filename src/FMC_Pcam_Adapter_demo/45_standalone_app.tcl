@@ -56,6 +56,8 @@ app config -set -name $app_name build-config Debug
 app config -set -name $app_name assembler-flags {}
 app config -set -name $app_name compiler-misc {-c -fmessage-length=0 -MT"$@" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard}
 app config -set -name $app_name compiler-optimization {None (-O0)}
+app config -add -name $app_name define-compiler-symbols {DEBUG}
+app config -add -name $app_name define-compiler-symbols {_DEBUG}
 app config -add -name $app_name include-path $script_dir/src
 app config -set -name $app_name linker-misc { -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec}
 app config -set -name $app_name linker-script $script_dir/src/lscript.ld
